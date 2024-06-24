@@ -21,13 +21,13 @@ test.only("Recent Transactions Filter", async ({ browser }) => {
     const context = await browser.newContext();
     const page = await context.newPage();
     await page.goto("https://demo.applitools.com/app.html");
-    // Obtengo el índice de la columna STATUS// porque si el dia de maniana quiero filtrar con otra opcion, es cuestion de sacar el indice
     // Filtro filas donde el STATUS sea "Complete"
     const row =  await page.getByRole('row');
     const rowCount = await row.count();
     console.log(rowCount);
     let completeCount = 0;
     let pendingCount = 0;
+    let declinedCount = 0;
     let exist = false;
         for (let i = 0; i < rowCount; i++) {
             let cellText = await row.nth(i).locator(".nowrap").locator("span").nth(1);
@@ -42,9 +42,13 @@ test.only("Recent Transactions Filter", async ({ browser }) => {
                 pendingCount++;
                 exist = true;
             }
+            if ((await cellText.allInnerTexts()).toString()  === "Declined") {
+                declinedCount++;
+                exist = true;
+            }
         }
          // Imprimo la cantidad de filas con STATUS "Complete"
-        console.log("Cantidad de filas con STATUS Complete: " +completeCount + " Cantidad de Pendings: " +pendingCount);
+        console.log("Cantidad de filas con STATUS Complete: " +completeCount + " Cantidad de Pendings: " +pendingCount + " Cantidad de declinados: "+ declinedCount);
         expect(exist,"no existen valores").toBe(true);
     });
 
