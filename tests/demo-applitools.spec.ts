@@ -16,7 +16,7 @@ test("Financial Overview check", async ({ browser }) => {
     console.log(totalValue);
 });
 
-test.only("Recent Transactions Filter", async ({ browser }) => {
+test("Recent Transactions Filter", async ({ browser }) => {
     // Create a new page in the context
     const context = await browser.newContext();
     const page = await context.newPage();

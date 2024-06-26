@@ -24,7 +24,7 @@ export default defineConfig({
   reporter: 'html',
   /* Shared settings for all the projects below. See https://playwright.dev/docs/api/class-testoptions. */
   use: {
-      headless: true, //para poder ver siempre el browser abierto en los test
+      headless: false, //para poder ver siempre el browser abierto en los test
       screenshot: "on",
       video:"on",
     /* Base URL to use in actions like `await page.goto('/')`. */
