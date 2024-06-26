@@ -1,6 +1,6 @@
 //En este archivo colocaremos todos los test basados en la web: https://demo.applitools.com/app.html
 import { test, expect, chromium } from '@playwright/test';
-//import { customUtils } from '../Utils/utils';744444444
+
 
 test("Financial Overview check", async ({ browser }) => {
     const context = await browser.newContext();

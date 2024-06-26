@@ -1,16 +1,17 @@
 [
     {
-    "name": "Laurin Test",
+    "name": "Chola",
     "lastname": "Queti",
     "email": "llinarestest@gmail.com",
     "country": "El primero del mundo",
-    "message": "This is a test"
+    "message": "Me identifico como mensaje"
     },
     {
         "name": "Raquel",
         "email": "Raquelita54@gmail.com",
+        "lastname": "De Paternal",
         "role": "QA",
         "company name": "Los cuchuflitos",
-        "message": "Alohomora"
+        "message1": "Alohomora"
     }
 ]
