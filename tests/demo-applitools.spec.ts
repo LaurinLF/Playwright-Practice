@@ -15,7 +15,7 @@ test("Financial Overview check", async ({ browser }) => {
     await expect(totalValue).toBeVisible();
     console.log(totalValue);
 });
-
+//filtro de tabla por estados.
 test("Recent Transactions Filter", async ({ browser }) => {
     // Create a new page in the context
     const context = await browser.newContext();
