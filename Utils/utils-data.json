@@ -13,5 +13,13 @@
         "role": "QA",
         "company name": "Los cuchuflitos",
         "message1": "Alohomora"
+    },
+    {
+        "name": "Sharon",
+        "username": "llinarestest@gmail.com",
+        "email": "Test@gmail.com",
+        "password": "Test1234",
+        "message": "La sharonnnn"
     }
+    
 ]
