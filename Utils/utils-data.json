@@ -20,6 +20,14 @@
         "email": "Test@gmail.com",
         "password": "Test1234",
         "message": "La sharonnnn"
+    },
+    {
+        "naturaUsername": "laura_lf20@hotmail.com",
+        "natuaraPassword": "Test1234@",
+        "productName": "Jabón líquido Tododia frambuesa y pimienta rosa",
+        "userAddress": "Av. Siempre viva",
+        "userName": "Chola",
+        "celular": "1154545454"
     }
     
 ]

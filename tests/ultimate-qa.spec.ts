@@ -1,6 +1,5 @@
 //En este file vamos a realizar los test de la siguiente web: https://ultimateqa.com/automation
 import { test, expect, Page } from '@playwright/test';
-import exp from 'constants';
 const dataset = JSON.parse(JSON.stringify(require("../Utils/utils-data.json")));
 
 
@@ -276,35 +275,20 @@ test("Tab and assertion", async ({ page }) => {
     const tab2 = page.locator("(//div[@class='et_pb_tab_content'])[2]");
     expect(tab2).toContainText('Tab 2 content');
 });
-// jugando con tablas de ID's plot twist: no me salio, me da todo 0. 
-test.only("HTML Table with unique id", async ({ page }) => {
+// jugando con tablas de ID's plot twist: no me salio, me da todo 0. // esta todo malllllll
+test("HTML Table with unique id", async ({ page }) => {
     await page.goto("https://ultimateqa.com/simple-html-elements-for-automation/");
-    await page.locator("#htmlTableId");
-    const filas = page.getByRole('row');
-    const count = await filas.count();
-    let title = 0;
-    let work = 0;
-    let salary = 0;
-    let exist = true;
-    for (let i = 0; i < count; i++) {
-        let cellText = await filas.nth(i).locator(".nowrap").locator("span").nth(1);
-        let descriptionCell = await filas.nth(i).locator('.cell-with-media').locator("span");
-        console.log(await cellText.allInnerTexts()); //con esto identificamos donde podria estar el error que no machea el complete con cellTexts
-        if ((await cellText.allInnerTexts()).toString()  === "Software Development Engineer in Test") {
-            title++;
-            exist = true;
-            console.log(await descriptionCell.allInnerTexts());
-        } 
-        if ((await cellText.allInnerTexts()).toString()  === "Automation Testing Architect") {
-            work++;
-            exist = true;
-        }
-        if ((await cellText.allInnerTexts()).toString()  === "Quality Assurance Engineer") {
-            salary++;
-            exist = true;
-        }
+    // llamamos a la tabla, en este caso solo contiene un id que engloba todo"
+    // Selecciona todos los elementos de la columna "Rol"
+    const roles = await page.$$eval('#htmlTableId', elements =>
+        elements.map(element => element.textContent)
+    );
+    // Itero sobre la lista de roles y muestra cada uno en la consola
+    for (let i = 0; i < roles.length; i++) {
+        console.log(`Rol ${i + 1}: ${roles[i]}`);
     }
-     // Imprimo la cantidad de filas con STATUS "Complete"
-    console.log("Titulos de puestos: " +title + " Roles: " +work + " Diferencia de salarios: "+ salary);
-    expect(exist,"no existen valores").toBe(true);
+    /*const row = await page.getByRole("row");
+    console.log(await row.nth(1).innerText());
+    console.log(await row.nth(1).getByRole("cell").nth(2).innerText());// de esta manera no podemos iterar, para poder iterar necesitamos primero poder acceder a las filas y de ahi generar un for.
+*/
 });
