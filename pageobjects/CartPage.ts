@@ -20,6 +20,12 @@ export class CartPage {
     phonenumber: Locator;
     mainAddressCheck: Locator;
     saveAddress: Locator;
+    deleteCartBtn: Locator;
+    verifyAddress: Locator;
+    deleteAddressBtn: Locator;
+    cnfBtn: Locator;
+    cfmDeletAddress: Locator;
+    cfmDeleteCart: Locator;  
     
     
 
@@ -42,7 +48,12 @@ export class CartPage {
         this.phonenumber = page.locator("input[name='phoneNumber']");
         this.mainAddressCheck = page.locator("input[name='mainAddress']");
         this.saveAddress = page.locator("//button[@type='submit']//span[1]");
-
+        this.deleteCartBtn = page.locator("(//span[@class='MuiIconButton-label']//i)[3]");
+        this.verifyAddress = page.locator("//h6[text()='Casita']");
+        this.deleteAddressBtn = page.locator("(//span[@class='MuiIconButton-label']//i)[3]");
+        this.cnfBtn = page.locator("//span[text()='Borrar']");
+        this.cfmDeletAddress= page.locator("//h6[text()='Añadir nueva dirección']");
+        this.cfmDeleteCart = page.locator("//h6[text()='Aún no tenés productos en tu carrito de compras']");
     }
     async verifyproduct() {
         if (this.cartProducts) {
@@ -78,10 +89,19 @@ export class CartPage {
     await this.phonenumber.fill(dataset[3].celular);
     await this.mainAddressCheck.click();
     await this.saveAddress.click();
-
-
-
-  
+  }
+  async addressReview(){
+    await this.page.goto("https://www.naturacosmeticos.com.ar/revision");
+    await expect(this.verifyAddress).toHaveText("Casita");
+  }
+  async deleteAddress(){
+    await this.deleteAddressBtn.click();
+    await this.cnfBtn.click();
+    await expect(this.cfmDeletAddress).toHaveText("Añadir nueva dirección");
+  }
+  async vaciarCarrito(){
+    await this.deleteCartBtn.click();
+    await expect(this.cfmDeleteCart).toHaveText("Aún no tenés productos en tu carrito de compras");
   }
 }
 

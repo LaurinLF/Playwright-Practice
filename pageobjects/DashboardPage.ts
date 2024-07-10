@@ -7,6 +7,7 @@ export class DashboardPage {
     productsContainer: Locator;
     clickSaleMenu: Locator;
     buyButton: Locator;
+    cartIcon: Locator;
 
 
 
@@ -16,6 +17,7 @@ export class DashboardPage {
         this.productsContainer = page.getByText("Jabón líquido Tododia frambuesa y pimienta rosa");
         this.clickSaleMenu = page.locator("(//a[@data-testid='category-link']//p)[1]");
         this.buyButton = page.locator("//span[text()='Comprar']");
+        this.cartIcon = page.locator("//button[@data-testid='basket-badge']//span[1]");
 
     
 
@@ -31,11 +33,12 @@ export class DashboardPage {
     }
     async navigateToCart()
     {
+        await this.cartIcon.click();
         await this.cart.click();
         return new CartPage(this.page);
     }
     async salesMenu(){
-        await this,this.clickSaleMenu.click();
+        await this.clickSaleMenu.click();
     }
     async acceptCookies() {
         await this.page.waitForSelector(".ot-sdk-container");
